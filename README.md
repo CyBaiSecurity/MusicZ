@@ -1,50 +1,52 @@
-This page tells you what MusicZ does, which versions the project expects, how you build a debug APK, and which files stay out of git. Read the build section before you run the wrapper.
+# MusicZ 🎵
 
-## What it does
+MusicZ is an Android app that saves a YouTube link as an MP3 on your phone, then plays it.
 
-MusicZ is an Android app with application id `com.cybai.musicplayer`. You type a URL in a field labeled "YouTube URL". If `ConnectivityManager` reports no internet, the download does not start and the screen shows "No internet connection". Otherwise the app enqueues `DownloadWorker`.
+The app id is `com.cybai.musicplayer`.
 
-`DownloadWorker` extracts MP3 audio with `youtubedl-android` and `FFmpeg` (both `0.18.1`) into app external-files music storage. The app skips a duplicate source URL before enqueue. Songs play through `Media3` (`MusicController` binds to `PlaybackService`, which uses `ExoPlayer`). Playlists are `Room` rows.
+## What you can do 🎧
 
-Stats show total listening time and the top 10 songs by play count. Navigation includes these screens:
+Paste a link in the field labeled "YouTube URL".
 
-- Download
-- Songs
-- Playlists
-- Stats
+- If the phone is offline, the download does not start. The screen says "No internet connection".
+- If that link is already saved, the app skips it.
+- A new link is saved as an MP3 with youtubedl-android and FFmpeg `0.18.1`, in the app's music folder.
+- Songs play with Media3 (ExoPlayer).
+- Playlists are saved in the app database.
+- Stats show your total listening time and the 10 songs you played most.
 
-## Requirements
+The screens are Download, Songs, Playlists, and Stats.
 
-You build with the toolchain this repository already pins. The Gradle files declare these values:
+## What you need 🧰
 
-- Kotlin
-- `minSdk` `26`
-- `compileSdk` `34`
-- `targetSdk` `34`
-- `versionName` `1.0`
-- Java `17` source and target
-- Kotlin `jvmTarget` `17`
-- Android Gradle Plugin `8.2.2`
-- Kotlin Gradle plugin `1.9.22`
-- Gradle `8.5` wrapper distribution
+Use the versions already set in the Gradle files:
 
-## Build
+- Kotlin and Java 17
+- Android 8.0 or newer (API 26), compile SDK 34, target SDK 34
+- App version 1.0
+- Android Gradle Plugin 8.2.2
+- Kotlin Gradle plugin 1.9.22
+- Gradle 8.5
 
-You assemble a debug build from `App/`. `App/gradle/wrapper/` contains `gradle-wrapper.properties` and does not contain `gradle-wrapper.jar`, so `./gradlew` cannot start until that jar is beside the properties file:
+## How to build 🔨
 
-- Run `./gradlew assembleDebug` from `App/`.
-- `App/gradle/wrapper/` contains `gradle-wrapper.properties`.
-- `App/gradle/wrapper/` does not contain `gradle-wrapper.jar`.
+From the `App/` folder, run:
 
-## Left out of git
+```bash
+./gradlew assembleDebug
+```
 
-You keep these paths out of git. The set covers the SDK file, the IDE directory, Gradle and build outputs, and the two private briefs:
+A new copy of this repo cannot run that command yet. `App/gradle/wrapper/` has `gradle-wrapper.properties` and does not have `gradle-wrapper.jar`. Put the jar next to the properties file, then run the command.
 
-- `local.properties`, the SDK file
-- `.idea/`, the IDE directory
-- `.gradle/` and `build/`, plus apk outputs (`*.apk`)
-- `App/instructions.md` and `App/instructions_2.md`, the private briefs
+## Files kept off GitHub 🔒
 
-## License
+These stay on your computer:
 
-No license is included yet, so the code is not yet under an open-source grant.
+- `local.properties` is your Android SDK path
+- `.idea/` is Android Studio's project data
+- `.gradle/` and `build/` are build output, including APK files
+- `App/instructions.md` and `App/instructions_2.md` are private notes
+
+## License 📄
+
+MusicZ is under the MIT License. The full text is in [LICENSE](LICENSE).
