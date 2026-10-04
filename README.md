@@ -38,15 +38,6 @@ From the `App/` folder, run:
 
 A new copy of this repo cannot run that command yet. `App/gradle/wrapper/` has `gradle-wrapper.properties` and does not have `gradle-wrapper.jar`. Put the jar next to the properties file, then run the command.
 
-## Files kept off GitHub 🔒
-
-These stay on your computer:
-
-- `local.properties` is your Android SDK path
-- `.idea/` is Android Studio's project data
-- `.gradle/` and `build/` are build output, including APK files
-- `App/instructions.md` and `App/instructions_2.md` are private notes
-
 ## License 📄
 
 MusicZ is under the MIT License. The full text is in [LICENSE](LICENSE).
