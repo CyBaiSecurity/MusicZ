@@ -36,8 +36,6 @@ From the `App/` folder, run:
 ./gradlew assembleDebug
 ```
 
-A new copy of this repo cannot run that command yet. `App/gradle/wrapper/` has `gradle-wrapper.properties` and does not have `gradle-wrapper.jar`. Put the jar next to the properties file, then run the command.
-
 ## License 📄
 
 MusicZ is under the MIT License. The full text is in [LICENSE](LICENSE).
